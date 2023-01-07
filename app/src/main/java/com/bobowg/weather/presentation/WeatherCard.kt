@@ -3,6 +3,7 @@ package com.bobowg.weather.presentation
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -26,6 +27,8 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.math.roundToInt
 import com.bobowg.weather.R
+import com.bobowg.weather.presentation.ui.theme.DarkBlue
+import com.bobowg.weather.presentation.ui.theme.WeatherTheme
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -112,10 +115,10 @@ fun WeatherCard(
 }
 
 @RequiresApi(Build.VERSION_CODES.O)
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun WeatherCardPreview() {
-    val weatherData = WeatherData(
+    val weatherData1 = WeatherData(
         time = LocalDateTime.now(),
         temperatureCelsius = 20.7,
         pressure = 20.7,
@@ -123,14 +126,41 @@ fun WeatherCardPreview() {
         humidity = 89.01,
         weatherType = WeatherType.fromWMO(20)
     )
+    val weatherData2 = WeatherData(
+        time = LocalDateTime.now(),
+        temperatureCelsius = 20.7,
+        pressure = 20.7,
+        windSpeed = 18.4,
+        humidity = 89.01,
+        weatherType = WeatherType.fromWMO(20)
+    )
+    val weatherData3 = WeatherData(
+        time = LocalDateTime.now(),
+        temperatureCelsius = 20.7,
+        pressure = 20.7,
+        windSpeed = 18.4,
+        humidity = 89.01,
+        weatherType = WeatherType.fromWMO(20)
+    )
+    
     val weatherInfo = WeatherInfo(
-        weatherDataPerDay = mapOf(Pair(1, listOf(weatherData))),
-        currentWeatherData = weatherData
+        weatherDataPerDay = mapOf(Pair(1, listOf(weatherData1,weatherData2,weatherData3))),
+        currentWeatherData = weatherData1
     )
     val state = WeatherState(
         weatherInfo = weatherInfo,
         isLoading = false,
         error = null
     )
-    WeatherCard(state = state, backgroundColor = DeepBlue)
+    WeatherTheme {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(DarkBlue)
+        ) {
+            WeatherCard(state = state, backgroundColor = DeepBlue)
+            Spacer(modifier = Modifier.height(16.dp))
+            WeatherForecast(state = state)
+        }
+    }
 }
