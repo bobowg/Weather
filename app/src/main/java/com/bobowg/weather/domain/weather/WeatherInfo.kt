@@ -1,7 +1,7 @@
 package com.bobowg.weather.domain.weather
 
 
-data class WheaterInfo(
+data class WeatherInfo(
     val weatherDataPerDay:Map<Int,List<WeatherData>>,
     val currentWeatherData:WeatherData?
 )
