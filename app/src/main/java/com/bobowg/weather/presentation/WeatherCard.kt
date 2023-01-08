@@ -144,11 +144,20 @@ fun WeatherCardPreview() {
     )
 
     val weatherInfo = WeatherInfo(
+        weatherDataPerDay = mapOf(Pair(0, listOf(weatherData1, weatherData2, weatherData3))),
+        currentWeatherData = weatherData1
+    )
+    val weatherInfo1 = WeatherInfo(
         weatherDataPerDay = mapOf(Pair(1, listOf(weatherData1, weatherData2, weatherData3))),
         currentWeatherData = weatherData1
     )
     val state = WeatherState(
         weatherInfo = weatherInfo,
+        isLoading = false,
+        error = null
+    )
+    val state1 = WeatherState(
+        weatherInfo = weatherInfo1,
         isLoading = true,
         error = null
     )
@@ -159,10 +168,13 @@ fun WeatherCardPreview() {
                 .background(DarkBlue)
         ) {
             WeatherCard(state = state, backgroundColor = DeepBlue)
-            Spacer(modifier = Modifier.height(16.dp))
-            TodayWeatherForecast(state = state)
-            Spacer(modifier = Modifier.height(16.dp))
-            TomorrowWeatherForecast(state = state)
+            Column {
+                Spacer(modifier = Modifier.height(16.dp))
+                TodayWeatherForecast(state = state)
+                Spacer(modifier = Modifier.height(16.dp))
+                TomorrowWeatherForecast(state = state1)
+            }
+
         }
     }
 }

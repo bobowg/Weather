@@ -34,7 +34,9 @@ fun TodayWeatherForecast(
                 items(data) { weatherData ->
                     HourlyWeatherDisplay(
                         weatherData = weatherData,
-                        modifier = Modifier.height(100.dp).padding(horizontal = 16.dp)
+                        modifier = Modifier
+                            .height(100.dp)
+                            .padding(horizontal = 16.dp)
                     )
                 }
             })
@@ -64,7 +66,9 @@ fun TomorrowWeatherForecast(
                 items(data) { weatherData ->
                     HourlyWeatherDisplay(
                         weatherData = weatherData,
-                        modifier = Modifier.height(100.dp).padding(horizontal = 16.dp)
+                        modifier = Modifier
+                            .height(100.dp)
+                            .padding(horizontal = 16.dp)
                     )
                 }
             })
