@@ -54,7 +54,9 @@ class MainActivity : ComponentActivity() {
                     ) {
                         WeatherCard(state = viewModel.state, backgroundColor = DeepBlue)
                         Spacer(modifier = Modifier.height(16.dp))
-                        WeatherForecast(state = viewModel.state)
+                        TodayWeatherForecast(state = viewModel.state)
+                        Spacer(modifier = Modifier.height(16.dp))
+                        TomorrowWeatherForecast(state = viewModel.state)
                     }
                     if (viewModel.state.isLoading) {
                         CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))

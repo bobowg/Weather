@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.sp
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun WeatherForecast(
+fun TodayWeatherForecast(
     state: WeatherState,
     modifier: Modifier = Modifier
 ) {
@@ -25,7 +25,37 @@ fun WeatherForecast(
                 .padding(horizontal = 16.dp)
         ) {
             Text(
-                text = "今天",
+                text = "今天天气详情",
+                fontSize = 20.sp,
+                color = Color.White
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            LazyRow(content = {
+                items(data) { weatherData ->
+                    HourlyWeatherDisplay(
+                        weatherData = weatherData,
+                        modifier = Modifier.height(100.dp).padding(horizontal = 16.dp)
+                    )
+                }
+            })
+        }
+    }
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+@Composable
+fun TomorrowWeatherForecast(
+    state: WeatherState,
+    modifier: Modifier = Modifier
+) {
+    state.weatherInfo?.weatherDataPerDay?.get(1)?.let { data ->
+        Column(
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
+        ) {
+            Text(
+                text = "明天天气详情",
                 fontSize = 20.sp,
                 color = Color.White
             )

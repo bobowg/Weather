@@ -83,8 +83,8 @@ fun WeatherCard(
                 ) {
                     WeatherDataDisplay(
                         value = data.pressure.roundToInt(),
-                        unit ="hpa",
-                        icon =ImageVector.vectorResource(id = R.drawable.ic_pressure),
+                        unit = "hpa",
+                        icon = ImageVector.vectorResource(id = R.drawable.ic_pressure),
                         iconTint = Color.White,
                         textStyle = TextStyle(
                             color = Color.White,
@@ -92,8 +92,8 @@ fun WeatherCard(
                     )
                     WeatherDataDisplay(
                         value = data.humidity.roundToInt(),
-                        unit ="%",
-                        icon =ImageVector.vectorResource(id = R.drawable.ic_drop),
+                        unit = "%",
+                        icon = ImageVector.vectorResource(id = R.drawable.ic_drop),
                         iconTint = Color.White,
                         textStyle = TextStyle(
                             color = Color.White,
@@ -101,8 +101,8 @@ fun WeatherCard(
                     )
                     WeatherDataDisplay(
                         value = data.windSpeed.roundToInt(),
-                        unit ="km/h",
-                        icon =ImageVector.vectorResource(id = R.drawable.ic_wind),
+                        unit = "km/h",
+                        icon = ImageVector.vectorResource(id = R.drawable.ic_wind),
                         iconTint = Color.White,
                         textStyle = TextStyle(
                             color = Color.White,
@@ -132,7 +132,7 @@ fun WeatherCardPreview() {
         pressure = 20.7,
         windSpeed = 18.4,
         humidity = 89.01,
-        weatherType = WeatherType.fromWMO(20)
+        weatherType = WeatherType.fromWMO(2)
     )
     val weatherData3 = WeatherData(
         time = LocalDateTime.now(),
@@ -140,16 +140,16 @@ fun WeatherCardPreview() {
         pressure = 20.7,
         windSpeed = 18.4,
         humidity = 89.01,
-        weatherType = WeatherType.fromWMO(20)
+        weatherType = WeatherType.fromWMO(0)
     )
-    
+
     val weatherInfo = WeatherInfo(
-        weatherDataPerDay = mapOf(Pair(1, listOf(weatherData1,weatherData2,weatherData3))),
+        weatherDataPerDay = mapOf(Pair(1, listOf(weatherData1, weatherData2, weatherData3))),
         currentWeatherData = weatherData1
     )
     val state = WeatherState(
         weatherInfo = weatherInfo,
-        isLoading = false,
+        isLoading = true,
         error = null
     )
     WeatherTheme {
@@ -160,7 +160,9 @@ fun WeatherCardPreview() {
         ) {
             WeatherCard(state = state, backgroundColor = DeepBlue)
             Spacer(modifier = Modifier.height(16.dp))
-            WeatherForecast(state = state)
+            TodayWeatherForecast(state = state)
+            Spacer(modifier = Modifier.height(16.dp))
+            TomorrowWeatherForecast(state = state)
         }
     }
 }
