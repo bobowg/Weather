@@ -17,7 +17,7 @@ sealed class WeatherType(
     )
     object PartlyCloudy:WeatherType(
         weatherDesc = "部分多云",
-        iconRes = R.drawable.ic_cloudy
+        iconRes = R.drawable.ic_01_cloudy
     )
     object Overcast:WeatherType(
         weatherDesc = "多云",
