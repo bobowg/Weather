@@ -46,6 +46,7 @@ class MainActivity : ComponentActivity() {
         )
         setContent {
             WeatherTheme {
+
                 Box(modifier = Modifier.fillMaxSize()) {
                     Column(
                         modifier = Modifier
